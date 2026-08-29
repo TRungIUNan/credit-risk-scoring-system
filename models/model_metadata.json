@@ -1,0 +1,413 @@
+{
+  "artifact_version": "2026-08-29-frozen-notebook-04",
+  "created_at_utc": "2026-08-29T02:20:40.090319+00:00",
+  "source_of_truth": {
+    "feature_notebook": "notebooks/03_feature_analysis.ipynb",
+    "model_notebook": "notebooks/04_model_analysis.ipynb",
+    "note": "CLI training reuses frozen notebook decisions without retuning."
+  },
+  "data": {
+    "raw_path": "data/raw/Credit Risk Dataset.xlsx",
+    "sheet_name": "Credit Risk Data",
+    "rows": 32581,
+    "columns": 29,
+    "target_rate": 0.21816396059052823,
+    "development_rows": 26064,
+    "locked_test_rows": 6517,
+    "locked_test_share": 0.2000245541880237
+  },
+  "validation_summary": {
+    "row_count": 32581,
+    "failed_checks": 0,
+    "warning_or_watchlist_checks": 4,
+    "checks": [
+      {
+        "check_name": "schema_expected_columns",
+        "category": "Schema",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "-",
+        "affected_rows": null,
+        "affected_rate": null,
+        "message": "Schema matches expected Data Audit columns."
+      },
+      {
+        "check_name": "required_column_loan_status",
+        "category": "Schema",
+        "severity": "high",
+        "status": "passed",
+        "affected_columns": "loan_status",
+        "affected_rows": null,
+        "affected_rate": null,
+        "message": "Required column loan_status exists."
+      },
+      {
+        "check_name": "required_column_client_ID",
+        "category": "Schema",
+        "severity": "high",
+        "status": "passed",
+        "affected_columns": "client_ID",
+        "affected_rows": null,
+        "affected_rate": null,
+        "message": "Required column client_ID exists."
+      },
+      {
+        "check_name": "duplicate_rows",
+        "category": "Duplicate",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "All columns",
+        "affected_rows": 0,
+        "affected_rate": 0.0,
+        "message": "No duplicate rows found."
+      },
+      {
+        "check_name": "duplicate_client_id",
+        "category": "Duplicate",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "client_ID",
+        "affected_rows": 0,
+        "affected_rate": 0.0,
+        "message": "client_ID is unique."
+      },
+      {
+        "check_name": "unexpected_missing_columns",
+        "category": "Missing",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "-",
+        "affected_rows": 0,
+        "affected_rate": 0.0,
+        "message": "No unexpected missing columns beyond Data Audit watchlist."
+      },
+      {
+        "check_name": "expected_missing_person_emp_length",
+        "category": "Missing",
+        "severity": "medium",
+        "status": "passed",
+        "affected_columns": "person_emp_length",
+        "affected_rows": 895,
+        "affected_rate": 0.027469997851508547,
+        "message": "person_emp_length missing rate is 2.75%; expected about 2.75%."
+      },
+      {
+        "check_name": "expected_missing_loan_int_rate",
+        "category": "Missing",
+        "severity": "medium",
+        "status": "passed",
+        "affected_columns": "loan_int_rate",
+        "affected_rows": 3116,
+        "affected_rate": 0.0956385623522912,
+        "message": "loan_int_rate missing rate is 9.56%; expected about 9.56%."
+      },
+      {
+        "check_name": "encoded_missing_tokens",
+        "category": "Invalid",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "-",
+        "affected_rows": 0,
+        "affected_rate": 0.0,
+        "message": "No encoded string missing tokens found."
+      },
+      {
+        "check_name": "person_age_range",
+        "category": "Range violation",
+        "severity": "medium",
+        "status": "warning",
+        "affected_columns": "person_age",
+        "affected_rows": 5,
+        "affected_rate": 0.00015346367514809244,
+        "message": "Found 5 rows where person_age is outside [20, 100]."
+      },
+      {
+        "check_name": "person_emp_length_vs_age",
+        "category": "Range violation",
+        "severity": "medium",
+        "status": "warning",
+        "affected_columns": "person_emp_length, person_age",
+        "affected_rows": 2,
+        "affected_rate": 6.138547005923697e-05,
+        "message": "Found 2 rows where person_emp_length is negative or greater than person_age - 14."
+      },
+      {
+        "check_name": "target_domain",
+        "category": "Invalid",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "loan_status",
+        "affected_rows": 0,
+        "affected_rate": 0.0,
+        "message": "loan_status only contains 0/1."
+      },
+      {
+        "check_name": "credit_utilization_ratio_range",
+        "category": "Range violation",
+        "severity": "low",
+        "status": "passed",
+        "affected_columns": "credit_utilization_ratio",
+        "affected_rows": 0,
+        "affected_rate": 0.0,
+        "message": "credit_utilization_ratio is within [0, 1]."
+      },
+      {
+        "check_name": "potential_leakage_loan_grade",
+        "category": "Potential leakage",
+        "severity": "high",
+        "status": "watchlist",
+        "affected_columns": "loan_grade",
+        "affected_rows": null,
+        "affected_rate": null,
+        "message": "loan_grade exists and should be excluded from Primary Model until application-time availability is confirmed. Reason: Potential post-underwriting risk grade."
+      },
+      {
+        "check_name": "potential_leakage_loan_int_rate",
+        "category": "Potential leakage",
+        "severity": "high",
+        "status": "watchlist",
+        "affected_columns": "loan_int_rate",
+        "affected_rows": null,
+        "affected_rate": null,
+        "message": "loan_int_rate exists and should be excluded from Primary Model until application-time availability is confirmed. Reason: Potential post-underwriting pricing or risk signal."
+      }
+    ]
+  },
+  "model": {
+    "champion_name": "LightGBM",
+    "champion_key": "lightgbm",
+    "selected_params": {
+      "colsample_bytree": 0.85,
+      "learning_rate": 0.05,
+      "max_depth": -1,
+      "min_child_samples": 40,
+      "n_estimators": 150,
+      "num_leaves": 31,
+      "subsample": 0.85
+    },
+    "random_state": 42,
+    "cv_n_splits_reference": 5
+  },
+  "calibration": {
+    "method": "isotonic",
+    "final_artifact_fit": "Base model fitted on development split; isotonic calibrator fitted on development raw probabilities, matching notebook final-artifact flow."
+  },
+  "metrics": {
+    "development": {
+      "roc_auc": 0.9348440442916945,
+      "pr_auc": 0.8594699370834791,
+      "ks": 0.7045406709428178,
+      "gini": 0.8696880885833891,
+      "brier": 0.06930154263934975,
+      "precision_at_0_5": 0.8890469416785206,
+      "recall_at_0_5": 0.6595145972564193,
+      "true_negatives": 19910,
+      "false_positives": 468,
+      "false_negatives": 1936,
+      "true_positives": 3750
+    },
+    "locked_test": {
+      "roc_auc": 0.8968513158566699,
+      "pr_auc": 0.806183474766748,
+      "ks": 0.6426941556281565,
+      "gini": 0.7937026317133398,
+      "brier": 0.08363077946339298,
+      "precision_at_0_5": 0.8415458937198068,
+      "recall_at_0_5": 0.6125175808720112,
+      "true_negatives": 4931,
+      "false_positives": 164,
+      "false_negatives": 551,
+      "true_positives": 871
+    },
+    "locked_test_decision": {
+      "approval_rate": 0.7225717354611018,
+      "manual_review_rate": 0.15528617462022404,
+      "rejection_rate": 0.12214208991867424,
+      "captured_default_rate": 0.779887482419128,
+      "rejected_default_capture_rate": 0.5295358649789029,
+      "business_utility": 2771.7999999999997,
+      "business_utility_per_applicant": 0.42531839803590604
+    },
+    "locked_test_score_summary": {
+      "min": 300.0,
+      "median": 767.963065480302,
+      "max": 850.0
+    },
+    "locked_test_grade_counts": {
+      "B": 1418,
+      "D": 1389,
+      "A": 1294,
+      "E": 1250,
+      "C": 1166
+    },
+    "notebook_vs_pipeline_comparison": [
+      {
+        "metric": "roc_auc",
+        "notebook_value": 0.8932,
+        "pipeline_value": 0.8968513158566699,
+        "absolute_delta": 0.00365131585666989
+      },
+      {
+        "metric": "pr_auc",
+        "notebook_value": 0.7992,
+        "pipeline_value": 0.806183474766748,
+        "absolute_delta": 0.006983474766747988
+      },
+      {
+        "metric": "ks",
+        "notebook_value": 0.6275,
+        "pipeline_value": 0.6426941556281565,
+        "absolute_delta": 0.015194155628156514
+      },
+      {
+        "metric": "brier",
+        "notebook_value": 0.0846,
+        "pipeline_value": 0.08363077946339298,
+        "absolute_delta": 0.0009692205366070156
+      }
+    ]
+  },
+  "feature_schema": {
+    "schema_version": "2026-08-29-frozen-notebook-04",
+    "target_col": "loan_status",
+    "id_col": "client_ID",
+    "raw_primary_features": [
+      "person_age",
+      "person_income",
+      "person_home_ownership",
+      "person_emp_length",
+      "loan_intent",
+      "loan_amnt",
+      "cb_person_default_on_file",
+      "cb_person_cred_hist_length",
+      "marital_status",
+      "education_level",
+      "employment_type",
+      "loan_term_months",
+      "loan_to_income_ratio",
+      "other_debt",
+      "debt_to_income_ratio",
+      "open_accounts",
+      "credit_utilization_ratio",
+      "past_delinquencies"
+    ],
+    "numeric_features_after_engineering": [
+      "person_age",
+      "person_income",
+      "person_emp_length",
+      "loan_amnt",
+      "cb_person_cred_hist_length",
+      "loan_term_months",
+      "loan_to_income_ratio",
+      "other_debt",
+      "debt_to_income_ratio",
+      "open_accounts",
+      "credit_utilization_ratio",
+      "past_delinquencies",
+      "person_emp_length_missing_flag",
+      "existing_debt_to_income_ratio",
+      "loan_amount_per_month",
+      "high_loan_to_income_flag",
+      "high_debt_to_income_flag",
+      "high_existing_debt_to_income_flag",
+      "previous_default_flag",
+      "past_delinquency_flag",
+      "thin_credit_history_flag",
+      "high_credit_utilization_flag",
+      "loan_to_income_x_previous_default",
+      "debt_to_income_x_past_delinquency",
+      "credit_history_x_credit_utilization"
+    ],
+    "categorical_features_after_engineering": [
+      "person_home_ownership",
+      "loan_intent",
+      "cb_person_default_on_file",
+      "marital_status",
+      "education_level",
+      "employment_type"
+    ],
+    "engineered_features": [
+      "person_emp_length_missing_flag",
+      "existing_debt_to_income_ratio",
+      "loan_amount_per_month",
+      "high_loan_to_income_flag",
+      "high_debt_to_income_flag",
+      "high_existing_debt_to_income_flag",
+      "previous_default_flag",
+      "past_delinquency_flag",
+      "thin_credit_history_flag",
+      "high_credit_utilization_flag",
+      "loan_to_income_x_previous_default",
+      "debt_to_income_x_past_delinquency",
+      "credit_history_x_credit_utilization"
+    ],
+    "extended_only_features": [
+      "loan_grade",
+      "loan_int_rate"
+    ],
+    "audit_only_features": [
+      "gender",
+      "country",
+      "state",
+      "city",
+      "city_latitude",
+      "city_longitude"
+    ],
+    "redundant_excluded_features": [
+      "loan_percent_income",
+      "loan_to_income_ratio_fe",
+      "total_debt_to_income_ratio"
+    ],
+    "original_missing_indicators": [
+      "person_emp_length"
+    ],
+    "feature_decision_note": "Feature decisions come from src/features/build_features.py. Primary excludes target, ID, potential leakage candidates, sensitive/geographic proxy variables, and redundant LTI aliases. Extended equals Primary plus leakage candidates only for ablation. Audit-only variables are kept outside modeling feature sets."
+  },
+  "credit_policy": {
+    "policy_status": "frozen",
+    "calibration_method": "isotonic",
+    "approve_threshold": 0.20789473684210527,
+    "reject_threshold": 0.71875,
+    "risk_grade_thresholds": [
+      0.011013215859030838,
+      0.040194884287454324,
+      0.10752688172043011,
+      0.3641025641025641
+    ],
+    "risk_grade_labels": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "business_utility": {
+      "approve_good": 1.0,
+      "approve_bad": -5.0,
+      "reject_good": -0.2,
+      "reject_bad": 0.0,
+      "manual_review_good": -0.05,
+      "manual_review_bad": -0.05
+    },
+    "credit_score": {
+      "score_min": 300,
+      "score_max": 850,
+      "base_score": 575,
+      "factor": 72.0,
+      "pd_clip_epsilon": 1e-06
+    }
+  },
+  "artifacts": {
+    "champion_model": "models/champion_model.joblib",
+    "calibrated_model": "models/calibrated_model.joblib",
+    "feature_schema": "models/feature_schema.json",
+    "credit_policy": "models/credit_policy.json",
+    "model_metadata": "models/model_metadata.json"
+  },
+  "smoke_checks": {
+    "predict_proba_shape_valid": true,
+    "probabilities_in_unit_interval": true,
+    "score_monotonic_decreasing": true,
+    "no_forbidden_raw_features": true
+  }
+}

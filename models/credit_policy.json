@@ -1,0 +1,34 @@
+{
+  "policy_status": "frozen",
+  "calibration_method": "isotonic",
+  "approve_threshold": 0.20789473684210527,
+  "reject_threshold": 0.71875,
+  "risk_grade_thresholds": [
+    0.011013215859030838,
+    0.040194884287454324,
+    0.10752688172043011,
+    0.3641025641025641
+  ],
+  "risk_grade_labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "business_utility": {
+    "approve_good": 1.0,
+    "approve_bad": -5.0,
+    "reject_good": -0.2,
+    "reject_bad": 0.0,
+    "manual_review_good": -0.05,
+    "manual_review_bad": -0.05
+  },
+  "credit_score": {
+    "score_min": 300,
+    "score_max": 850,
+    "base_score": 575,
+    "factor": 72.0,
+    "pd_clip_epsilon": 1e-06
+  }
+}

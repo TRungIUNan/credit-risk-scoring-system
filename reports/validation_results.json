@@ -1,0 +1,152 @@
+[
+  {
+    "check_name": "schema_expected_columns",
+    "category": "Schema",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "-",
+    "affected_rows": null,
+    "affected_rate": null,
+    "message": "Schema matches expected Data Audit columns."
+  },
+  {
+    "check_name": "required_column_loan_status",
+    "category": "Schema",
+    "severity": "high",
+    "status": "passed",
+    "affected_columns": "loan_status",
+    "affected_rows": null,
+    "affected_rate": null,
+    "message": "Required column loan_status exists."
+  },
+  {
+    "check_name": "required_column_client_ID",
+    "category": "Schema",
+    "severity": "high",
+    "status": "passed",
+    "affected_columns": "client_ID",
+    "affected_rows": null,
+    "affected_rate": null,
+    "message": "Required column client_ID exists."
+  },
+  {
+    "check_name": "duplicate_rows",
+    "category": "Duplicate",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "All columns",
+    "affected_rows": 0,
+    "affected_rate": 0.0,
+    "message": "No duplicate rows found."
+  },
+  {
+    "check_name": "duplicate_client_id",
+    "category": "Duplicate",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "client_ID",
+    "affected_rows": 0,
+    "affected_rate": 0.0,
+    "message": "client_ID is unique."
+  },
+  {
+    "check_name": "unexpected_missing_columns",
+    "category": "Missing",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "-",
+    "affected_rows": 0,
+    "affected_rate": 0.0,
+    "message": "No unexpected missing columns beyond Data Audit watchlist."
+  },
+  {
+    "check_name": "expected_missing_person_emp_length",
+    "category": "Missing",
+    "severity": "medium",
+    "status": "passed",
+    "affected_columns": "person_emp_length",
+    "affected_rows": 895,
+    "affected_rate": 0.027469997851508547,
+    "message": "person_emp_length missing rate is 2.75%; expected about 2.75%."
+  },
+  {
+    "check_name": "expected_missing_loan_int_rate",
+    "category": "Missing",
+    "severity": "medium",
+    "status": "passed",
+    "affected_columns": "loan_int_rate",
+    "affected_rows": 3116,
+    "affected_rate": 0.0956385623522912,
+    "message": "loan_int_rate missing rate is 9.56%; expected about 9.56%."
+  },
+  {
+    "check_name": "encoded_missing_tokens",
+    "category": "Invalid",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "-",
+    "affected_rows": 0,
+    "affected_rate": 0.0,
+    "message": "No encoded string missing tokens found."
+  },
+  {
+    "check_name": "person_age_range",
+    "category": "Range violation",
+    "severity": "medium",
+    "status": "warning",
+    "affected_columns": "person_age",
+    "affected_rows": 5,
+    "affected_rate": 0.00015346367514809244,
+    "message": "Found 5 rows where person_age is outside [20, 100]."
+  },
+  {
+    "check_name": "person_emp_length_vs_age",
+    "category": "Range violation",
+    "severity": "medium",
+    "status": "warning",
+    "affected_columns": "person_emp_length, person_age",
+    "affected_rows": 2,
+    "affected_rate": 6.138547005923697e-05,
+    "message": "Found 2 rows where person_emp_length is negative or greater than person_age - 14."
+  },
+  {
+    "check_name": "target_domain",
+    "category": "Invalid",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "loan_status",
+    "affected_rows": 0,
+    "affected_rate": 0.0,
+    "message": "loan_status only contains 0/1."
+  },
+  {
+    "check_name": "credit_utilization_ratio_range",
+    "category": "Range violation",
+    "severity": "low",
+    "status": "passed",
+    "affected_columns": "credit_utilization_ratio",
+    "affected_rows": 0,
+    "affected_rate": 0.0,
+    "message": "credit_utilization_ratio is within [0, 1]."
+  },
+  {
+    "check_name": "potential_leakage_loan_grade",
+    "category": "Potential leakage",
+    "severity": "high",
+    "status": "watchlist",
+    "affected_columns": "loan_grade",
+    "affected_rows": null,
+    "affected_rate": null,
+    "message": "loan_grade exists and should be excluded from Primary Model until application-time availability is confirmed. Reason: Potential post-underwriting risk grade."
+  },
+  {
+    "check_name": "potential_leakage_loan_int_rate",
+    "category": "Potential leakage",
+    "severity": "high",
+    "status": "watchlist",
+    "affected_columns": "loan_int_rate",
+    "affected_rows": null,
+    "affected_rate": null,
+    "message": "loan_int_rate exists and should be excluded from Primary Model until application-time availability is confirmed. Reason: Potential post-underwriting pricing or risk signal."
+  }
+]

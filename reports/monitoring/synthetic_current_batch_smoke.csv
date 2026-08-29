@@ -1,0 +1,5 @@
+person_age,person_income,person_home_ownership,person_emp_length,loan_intent,loan_amnt,cb_person_default_on_file,cb_person_cred_hist_length,marital_status,education_level,employment_type,loan_term_months,loan_to_income_ratio,other_debt,debt_to_income_ratio,open_accounts,credit_utilization_ratio,past_delinquencies
+25,50000,RENT,2,EDUCATION,10000,N,2,single,Bachelor,full_time,36,0.20,5000,0.30,4,0.40,0
+40,120000,MORTGAGE,,MEDICAL,24000,Y,8,married,Master,self_employed,60,0.20,30000,0.45,8,0.90,2
+60,80000,OWN,10,PERSONAL,12000,N,15,single,High School,part_time,48,0.15,10000,0.25,5,0.20,0
+35,65000,RENT,5,VENTURE,18000,Y,4,divorced,Bachelor,full_time,36,0.276923,20000,0.50,6,0.85,1

@@ -1,0 +1,120 @@
+project:
+  name: CREDIT_RISK_PROJECT
+  artifact_version: "2026-08-29-frozen-notebook-04"
+
+data:
+  raw_path: "data/raw/Credit Risk Dataset.xlsx"
+  sheet_name: "Credit Risk Data"
+  target_col: "loan_status"
+  id_col: "client_ID"
+
+split:
+  random_state: 42
+  test_size: 0.20
+  stratify: true
+  cv_n_splits: 5
+
+features:
+  primary:
+    - person_age
+    - person_income
+    - person_home_ownership
+    - person_emp_length
+    - loan_intent
+    - loan_amnt
+    - cb_person_default_on_file
+    - cb_person_cred_hist_length
+    - marital_status
+    - education_level
+    - employment_type
+    - loan_term_months
+    - loan_to_income_ratio
+    - other_debt
+    - debt_to_income_ratio
+    - open_accounts
+    - credit_utilization_ratio
+    - past_delinquencies
+  extended_only:
+    - loan_grade
+    - loan_int_rate
+  audit_only:
+    - gender
+    - country
+    - state
+    - city
+    - city_latitude
+    - city_longitude
+  redundant_excluded:
+    - loan_percent_income
+    - loan_to_income_ratio_fe
+    - total_debt_to_income_ratio
+  original_missing_indicators:
+    - person_emp_length
+
+business_rules:
+  min_age: 20
+  max_age: 100
+  minimum_working_age: 14
+
+model:
+  champion_name: "LightGBM"
+  champion_key: "lightgbm"
+  params:
+    colsample_bytree: 0.85
+    learning_rate: 0.05
+    max_depth: -1
+    min_child_samples: 40
+    n_estimators: 150
+    num_leaves: 31
+    subsample: 0.85
+
+calibration:
+  method: "isotonic"
+
+credit_score:
+  score_min: 300
+  score_max: 850
+  base_score: 575
+  factor: 72.0
+  pd_clip_epsilon: 0.000001
+
+policy:
+  approve_threshold: 0.20789473684210527
+  reject_threshold: 0.71875
+  status: "frozen"
+  risk_grade_labels: ["A", "B", "C", "D", "E"]
+  business_utility:
+    approve_good: 1.0
+    approve_bad: -5.0
+    reject_good: -0.2
+    reject_bad: 0.0
+    manual_review_good: -0.05
+    manual_review_bad: -0.05
+
+artifacts:
+  output_dir: "models"
+  champion_model: "champion_model.joblib"
+  calibrated_model: "calibrated_model.joblib"
+  feature_schema: "feature_schema.json"
+  credit_policy: "credit_policy.json"
+  model_metadata: "model_metadata.json"
+
+notebook_reference:
+  source_notebook: "notebooks/04_model_analysis.ipynb"
+  metrics:
+    roc_auc: 0.8932
+    pr_auc: 0.7992
+    ks: 0.6275
+    brier: 0.0846
+  approve_threshold: 0.20789473684210527
+  reject_threshold: 0.71875
+
+monitoring:
+  output_dir: "reports/monitoring"
+  reference_profile: "reference_profile.json"
+  numeric_bins: 10
+  epsilon: 0.000001
+  psi_warning_threshold: 0.10
+  psi_alert_threshold: 0.25
+  min_labeled_rows: 20
+  max_batch_size: 1000

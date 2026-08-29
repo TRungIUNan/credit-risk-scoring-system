@@ -1,0 +1,619 @@
+{
+  "profile_type": "credit_risk_monitoring_reference",
+  "created_at_utc": "2026-08-29T07:59:38.771277+00:00",
+  "reference_population": {
+    "name": "Development population",
+    "definition": "Frozen 80/20 train_test_split development side using config random_state, test_size, and stratification.",
+    "uses_locked_test": false
+  },
+  "reference_rows": 26064,
+  "model_version": "2026-08-29-frozen-notebook-04",
+  "schema_version": "2026-08-29-frozen-notebook-04",
+  "policy_status": "frozen",
+  "calibration_method": "isotonic",
+  "feature_list": [
+    "person_age",
+    "person_income",
+    "person_home_ownership",
+    "person_emp_length",
+    "loan_intent",
+    "loan_amnt",
+    "cb_person_default_on_file",
+    "cb_person_cred_hist_length",
+    "marital_status",
+    "education_level",
+    "employment_type",
+    "loan_term_months",
+    "loan_to_income_ratio",
+    "other_debt",
+    "debt_to_income_ratio",
+    "open_accounts",
+    "credit_utilization_ratio",
+    "past_delinquencies"
+  ],
+  "feature_count": 18,
+  "monitoring_config": {
+    "numeric_bins": 10,
+    "epsilon": 1e-06,
+    "psi_warning_threshold": 0.1,
+    "psi_alert_threshold": 0.25,
+    "min_labeled_rows": 20,
+    "threshold_note": "Configurable monitoring heuristic, not a universal regulatory standard."
+  },
+  "features": {
+    "person_age": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        22.0,
+        23.0,
+        24.0,
+        25.0,
+        26.0,
+        27.0,
+        29.0,
+        32.0,
+        36.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.15009208103130756,
+        "bin_01": 0.11989717618170657,
+        "bin_02": 0.10854051565377532,
+        "bin_03": 0.0940377532228361,
+        "bin_04": 0.07627378759975445,
+        "bin_05": 0.06522406384284837,
+        "bin_06": 0.10800337630448127,
+        "bin_07": 0.10554788213627993,
+        "bin_08": 0.08410067526089625,
+        "bin_09": 0.08828268876611418,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 27.702731737262123,
+        "median": 26.0
+      }
+    },
+    "person_income": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        28701.2,
+        35000.0,
+        42000.0,
+        48996.0,
+        55000.0,
+        63000.0,
+        73000.0,
+        86000.0,
+        110000.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.10002302025782689,
+        "bin_01": 0.1032842234499693,
+        "bin_02": 0.10980662983425414,
+        "bin_03": 0.08717004297114794,
+        "bin_04": 0.10267034990791897,
+        "bin_05": 0.09875690607734806,
+        "bin_06": 0.10071362799263352,
+        "bin_07": 0.09963934929404543,
+        "bin_08": 0.09810466543891959,
+        "bin_09": 0.09983118477593615,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 66043.49823511357,
+        "median": 55000.0
+      }
+    },
+    "person_home_ownership": {
+      "feature_type": "categorical",
+      "categories": [
+        "MORTGAGE",
+        "OTHER",
+        "OWN",
+        "RENT"
+      ],
+      "proportions": {
+        "MORTGAGE": 0.4100291589932474,
+        "OTHER": 0.003414671577655003,
+        "OWN": 0.08018723143032536,
+        "RENT": 0.5063689379987723,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "person_emp_length": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        8.0,
+        10.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.21451043585021484,
+        "bin_01": 0.11824739103744629,
+        "bin_02": 0.10620012277470842,
+        "bin_03": 0.08924186617556783,
+        "bin_04": 0.08958717004297115,
+        "bin_05": 0.0816451810926949,
+        "bin_06": 0.11897636586863106,
+        "bin_07": 0.06357427869858809,
+        "bin_08": 0.0897022713321056,
+        "__MISSING__": 0.028314917127071824
+      },
+      "missing_rate": 0.028314917127071824,
+      "summary": {
+        "mean": 4.794598436389482,
+        "median": 4.0
+      }
+    },
+    "loan_intent": {
+      "feature_type": "categorical",
+      "categories": [
+        "DEBTCONSOLIDATION",
+        "EDUCATION",
+        "HOMEIMPROVEMENT",
+        "MEDICAL",
+        "PERSONAL",
+        "VENTURE"
+      ],
+      "proportions": {
+        "DEBTCONSOLIDATION": 0.15979895641497852,
+        "EDUCATION": 0.19866482504604052,
+        "HOMEIMPROVEMENT": 0.11038213627992634,
+        "MEDICAL": 0.18776856967464703,
+        "PERSONAL": 0.16797114794352364,
+        "VENTURE": 0.17541436464088397,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "loan_amnt": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        3000.0,
+        4400.0,
+        5500.0,
+        6800.0,
+        8000.0,
+        10000.0,
+        12000.0,
+        14500.0,
+        19000.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.12227593615715163,
+        "bin_01": 0.07792357274401474,
+        "bin_02": 0.10662216083486802,
+        "bin_03": 0.09453652547575199,
+        "bin_04": 0.1151780233271946,
+        "bin_05": 0.145219459791283,
+        "bin_06": 0.08862799263351749,
+        "bin_07": 0.05194904849600982,
+        "bin_08": 0.09944751381215469,
+        "bin_09": 0.09821976672805402,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 9569.114487415593,
+        "median": 8000.0
+      }
+    },
+    "cb_person_default_on_file": {
+      "feature_type": "categorical",
+      "categories": [
+        "N",
+        "Y"
+      ],
+      "proportions": {
+        "N": 0.8230893186003683,
+        "Y": 0.17691068139963168,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "cb_person_cred_hist_length": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        3.0,
+        4.0,
+        5.0,
+        7.0,
+        9.0,
+        11.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.36583026396562307,
+        "bin_01": 0.18316451810926948,
+        "bin_02": 0.05812615101289134,
+        "bin_03": 0.11483271945979129,
+        "bin_04": 0.116597605893186,
+        "bin_05": 0.07074892572130141,
+        "bin_06": 0.09069981583793739,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 5.78664057704113,
+        "median": 4.0
+      }
+    },
+    "marital_status": {
+      "feature_type": "categorical",
+      "categories": [
+        "Divorced",
+        "Married",
+        "Single",
+        "Widowed"
+      ],
+      "proportions": {
+        "Divorced": 0.0977977286678944,
+        "Married": 0.3502532228360958,
+        "Single": 0.50103591160221,
+        "Widowed": 0.05091313689379988,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "education_level": {
+      "feature_type": "categorical",
+      "categories": [
+        "Bachelor",
+        "High School",
+        "Master",
+        "PhD"
+      ],
+      "proportions": {
+        "Bachelor": 0.3507136279926335,
+        "High School": 0.4057704112952732,
+        "Master": 0.1984729895641498,
+        "PhD": 0.04504297114794353,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "employment_type": {
+      "feature_type": "categorical",
+      "categories": [
+        "Full-time",
+        "Part-time",
+        "Self-employed",
+        "Unemployed"
+      ],
+      "proportions": {
+        "Full-time": 0.5982965009208103,
+        "Part-time": 0.20177255985267034,
+        "Self-employed": 0.1495549416820135,
+        "Unemployed": 0.050375997544505835,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "loan_term_months": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        24.0,
+        36.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.2997621240024555,
+        "bin_01": 0.39552639656230815,
+        "bin_02": 0.30471147943523635,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 38.4926335174954,
+        "median": 36.0
+      }
+    },
+    "loan_to_income_ratio": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        0.0533333333333333,
+        0.0782554262774716,
+        0.1,
+        0.1237113402061855,
+        0.1481481481481481,
+        0.17550018090421335,
+        0.2083333333333333,
+        0.25,
+        0.3205128205128205,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.10059852670349909,
+        "bin_01": 0.09940914671577655,
+        "bin_02": 0.10263198281154082,
+        "bin_03": 0.09764426028238182,
+        "bin_04": 0.10009975445058318,
+        "bin_05": 0.09960098219766728,
+        "bin_06": 0.1042817679558011,
+        "bin_07": 0.09676181706568447,
+        "bin_08": 0.09906384284837323,
+        "bin_09": 0.09990791896869244,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 0.170519002059551,
+        "median": 0.1481481481481481
+      }
+    },
+    "other_debt": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        3277.2690979550725,
+        4663.129312969479,
+        6009.728518443565,
+        7412.945033900772,
+        9013.170443213468,
+        10868.827763493447,
+        13144.779288565856,
+        16242.596936062775,
+        21835.092626854905,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.10002302025782689,
+        "bin_01": 0.09998465316144874,
+        "bin_02": 0.09998465316144874,
+        "bin_03": 0.10002302025782689,
+        "bin_04": 0.09998465316144874,
+        "bin_05": 0.09998465316144874,
+        "bin_06": 0.10002302025782689,
+        "bin_07": 0.09998465316144874,
+        "bin_08": 0.09998465316144874,
+        "bin_09": 0.10002302025782689,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 11579.418363041019,
+        "median": 9013.170443213468
+      }
+    },
+    "debt_to_income_ratio": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        0.18761011997757643,
+        0.23237812045227313,
+        0.2693211365497755,
+        0.302328381734691,
+        0.33344688803902267,
+        0.3652661357131325,
+        0.40228440164582474,
+        0.4470934619517393,
+        0.5168246190792963,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.10002302025782689,
+        "bin_01": 0.09998465316144874,
+        "bin_02": 0.09998465316144874,
+        "bin_03": 0.10002302025782689,
+        "bin_04": 0.09998465316144874,
+        "bin_05": 0.09998465316144874,
+        "bin_06": 0.10002302025782689,
+        "bin_07": 0.09998465316144874,
+        "bin_08": 0.09998465316144874,
+        "bin_09": 0.10002302025782689,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 0.34530704541088564,
+        "median": 0.33344688803902267
+      }
+    },
+    "open_accounts": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        2.0,
+        4.0,
+        5.0,
+        7.0,
+        8.0,
+        10.0,
+        11.0,
+        13.0,
+        14.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.13063996316758747,
+        "bin_01": 0.13766114180478822,
+        "bin_02": 0.06395794966236955,
+        "bin_03": 0.12933548189073052,
+        "bin_04": 0.06533916513198282,
+        "bin_05": 0.13815991405770411,
+        "bin_06": 0.06495549416820134,
+        "bin_07": 0.13255831798649478,
+        "bin_08": 0.06687384898710866,
+        "bin_09": 0.07051872314303254,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 8.0417817679558,
+        "median": 8.0
+      }
+    },
+    "credit_utilization_ratio": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        0.1409738728484585,
+        0.22914718170794335,
+        0.31857657601726413,
+        0.4085804268260647,
+        0.49924187905873846,
+        0.5887153354193466,
+        0.6799666232030274,
+        0.7682494147847692,
+        0.8588002227667676,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.10002302025782689,
+        "bin_01": 0.09998465316144874,
+        "bin_02": 0.09998465316144874,
+        "bin_03": 0.10002302025782689,
+        "bin_04": 0.09998465316144874,
+        "bin_05": 0.09998465316144874,
+        "bin_06": 0.10002302025782689,
+        "bin_07": 0.09998465316144874,
+        "bin_08": 0.09998465316144874,
+        "bin_09": 0.10002302025782689,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 0.49906687123780435,
+        "median": 0.49924187905873846
+      }
+    },
+    "past_delinquencies": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        1.0,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.9068830570902394,
+        "bin_01": 0.0931169429097606,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 0.5036065070595457,
+        "median": 0.0
+      }
+    }
+  },
+  "outputs": {
+    "pd": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        0.004018081366147664,
+        0.011013215859030838,
+        0.017643352236925015,
+        0.040194884287454324,
+        0.06416131989000919,
+        0.10752688172043011,
+        0.18181818181818182,
+        0.3641025641025641,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.16651319828115407,
+        "bin_01": 0.03947974217311234,
+        "bin_02": 0.09764426028238182,
+        "bin_03": 0.12020411295273174,
+        "bin_04": 0.1088474524248005,
+        "bin_05": 0.07147790055248619,
+        "bin_06": 0.0959561080417434,
+        "bin_07": 0.10301565377532228,
+        "bin_08": 0.19686157151626765,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 0.21815531000613875,
+        "median": 0.06416131989000919
+      }
+    },
+    "credit_score": {
+      "feature_type": "numeric",
+      "bin_edges": [
+        "__NEG_INF__",
+        615.147321576588,
+        683.2935725678917,
+        727.3703970657838,
+        767.963065480302,
+        803.4553180441808,
+        "__POS_INF__"
+      ],
+      "proportions": {
+        "bin_00": 0.20434315531000613,
+        "bin_01": 0.0959561080417434,
+        "bin_02": 0.10267034990791897,
+        "bin_03": 0.10620012277470842,
+        "bin_04": 0.09848833640270105,
+        "bin_05": 0.392341927562922,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0,
+      "summary": {
+        "mean": 709.9306632583756,
+        "median": 767.963065480302
+      }
+    },
+    "risk_grade": {
+      "feature_type": "categorical",
+      "categories": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "proportions": {
+        "A": 0.20599294045426642,
+        "B": 0.21784837323511358,
+        "C": 0.1803253529772867,
+        "D": 0.1989717618170657,
+        "E": 0.19686157151626765,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    },
+    "decision": {
+      "feature_type": "categorical",
+      "categories": [
+        "APPROVE",
+        "MANUAL_REVIEW",
+        "REJECT"
+      ],
+      "proportions": {
+        "APPROVE": 0.7203806015960712,
+        "MANUAL_REVIEW": 0.15258594229588704,
+        "REJECT": 0.12703345610804173,
+        "__OTHER__": 0.0,
+        "__MISSING__": 0.0
+      },
+      "missing_rate": 0.0
+    }
+  }
+}

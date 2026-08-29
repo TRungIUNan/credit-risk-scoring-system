@@ -1,0 +1,96 @@
+{
+  "schema_version": "2026-08-29-frozen-notebook-04",
+  "target_col": "loan_status",
+  "id_col": "client_ID",
+  "raw_primary_features": [
+    "person_age",
+    "person_income",
+    "person_home_ownership",
+    "person_emp_length",
+    "loan_intent",
+    "loan_amnt",
+    "cb_person_default_on_file",
+    "cb_person_cred_hist_length",
+    "marital_status",
+    "education_level",
+    "employment_type",
+    "loan_term_months",
+    "loan_to_income_ratio",
+    "other_debt",
+    "debt_to_income_ratio",
+    "open_accounts",
+    "credit_utilization_ratio",
+    "past_delinquencies"
+  ],
+  "numeric_features_after_engineering": [
+    "person_age",
+    "person_income",
+    "person_emp_length",
+    "loan_amnt",
+    "cb_person_cred_hist_length",
+    "loan_term_months",
+    "loan_to_income_ratio",
+    "other_debt",
+    "debt_to_income_ratio",
+    "open_accounts",
+    "credit_utilization_ratio",
+    "past_delinquencies",
+    "person_emp_length_missing_flag",
+    "existing_debt_to_income_ratio",
+    "loan_amount_per_month",
+    "high_loan_to_income_flag",
+    "high_debt_to_income_flag",
+    "high_existing_debt_to_income_flag",
+    "previous_default_flag",
+    "past_delinquency_flag",
+    "thin_credit_history_flag",
+    "high_credit_utilization_flag",
+    "loan_to_income_x_previous_default",
+    "debt_to_income_x_past_delinquency",
+    "credit_history_x_credit_utilization"
+  ],
+  "categorical_features_after_engineering": [
+    "person_home_ownership",
+    "loan_intent",
+    "cb_person_default_on_file",
+    "marital_status",
+    "education_level",
+    "employment_type"
+  ],
+  "engineered_features": [
+    "person_emp_length_missing_flag",
+    "existing_debt_to_income_ratio",
+    "loan_amount_per_month",
+    "high_loan_to_income_flag",
+    "high_debt_to_income_flag",
+    "high_existing_debt_to_income_flag",
+    "previous_default_flag",
+    "past_delinquency_flag",
+    "thin_credit_history_flag",
+    "high_credit_utilization_flag",
+    "loan_to_income_x_previous_default",
+    "debt_to_income_x_past_delinquency",
+    "credit_history_x_credit_utilization"
+  ],
+  "extended_only_features": [
+    "loan_grade",
+    "loan_int_rate"
+  ],
+  "audit_only_features": [
+    "gender",
+    "country",
+    "state",
+    "city",
+    "city_latitude",
+    "city_longitude"
+  ],
+  "redundant_excluded_features": [
+    "loan_percent_income",
+    "loan_to_income_ratio_fe",
+    "total_debt_to_income_ratio"
+  ],
+  "original_missing_indicators": [
+    "person_emp_length"
+  ],
+  "feature_decision_note": "Feature decisions come from src/features/build_features.py. Primary excludes target, ID, potential leakage candidates, sensitive/geographic proxy variables, and redundant LTI aliases. Extended equals Primary plus leakage candidates only for ablation. Audit-only variables are kept outside modeling feature sets."
+}
